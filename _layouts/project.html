@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} — EcoTech</title>
+  <table class="meta-table">
+  <tr><td>Category</td><td>{{ page.category }}</td></tr>
+  <tr><td>Location</td><td>{{ page.city }}{% if page.city %}, {% endif %}{{ page.country }}</td></tr>
+  {% if page.builder %}<tr><td>Builder</td><td>{{ page.builder }}</td></tr>{% endif %}
+  {% if page.year %}<tr><td>Year</td><td>{{ page.year }}</td></tr>{% endif %}
+  {% if page.source %}<tr><td>Source</td><td><a href="{{ page.url }}" target="_blank">{{ page.source }}</a></td></tr>{% endif %}
+</table>  <title>{{ page.title }} — EcoTech</title>
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
