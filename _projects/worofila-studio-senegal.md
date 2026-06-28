@@ -5,7 +5,7 @@ country: Senegal
 category: structures
 builder: Worofila Architecture Studio
 year: 2024
-source: "ArchDaily — Straw, Earth and Bamboo: Innovative Use of Natural Materials in 2024 Projects from the Global South*
+source: "ArchDaily — Straw, Earth and Bamboo: Innovative Use of Natural Materials in 2024 Projects from the Global South"
 url: "https://www.archdaily.com/1025081/straw-earth-and-bamboo-innovative-use-of-natural-materials-in-2024-projects-from-the-global-south"
 ---
 
