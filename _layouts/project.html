@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} — EcoTech</title>
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+
+  <header>
+    <h1><a href="{{ '/' | relative_url }}">EcoTech</a></h1>
+    <p class="tagline">Materiality of Higher Civilization Engineering</p>
+  </header>
+
+  <main class="project-page">
+    <span class="cat">{{ page.category }}</span>
+    <h2>{{ page.title }}</h2>
+    <p class="meta">{{ page.city }}{% if page.city %}, {% endif %}{{ page.country }}</p>
+    {% if page.builder %}<p class="meta">{{ page.builder }}</p>{% endif %}
+    {% if page.year %}<p class="meta">{{ page.year }}</p>{% endif %}
+
+    <div class="project-body">
+      {{ content }}
+    </div>
+
+    {% if page.url and page.source %}
+    <p class="meta source">Source: <a href="{{ page.url }}" target="_blank">{{ page.source }}</a></p>
+    {% endif %}
+
+    <a href="{{ '/' | relative_url }}" class="back">← Back</a>
+  </main>
+
+</body>
+</html>
