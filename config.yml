@@ -1,0 +1,19 @@
+title: EcoTech
+description: Materiality of the New Earth
+baseurl: "/ecotech"
+url: "https://florebens.github.io"
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+
+plugins:
+  - jekyll-feed
