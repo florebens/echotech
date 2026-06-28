@@ -1,6 +1,7 @@
 ---
 title: Youth Aquaponics Program
-location: Bulawayo, Zimbabwe
+city: Bulawayo
+country: Zimbabwe
 category: community
 builder: Bulawayo Hub youth collective
 year: 2025
