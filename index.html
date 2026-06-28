@@ -1,0 +1,83 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoTech — Materiality of the New Earth</title>
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>EcoTech</h1>
+    <p class="tagline">Materiality of the New Earth</p>
+  </header>
+
+  <main>
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search projects..." autocomplete="off">
+      <div class="filters">
+        <button class="filter active" data-cat="all">All</button>
+        <button class="filter" data-cat="materials">Materials</button>
+        <button class="filter" data-cat="structures">Structures</button>
+        <button class="filter" data-cat="inventions">Inventions</button>
+        <button class="filter" data-cat="community">Community</button>
+        <button class="filter" data-cat="events">Events</button>
+      </div>
+    </div>
+
+    <div id="grid">
+      {% for project in site.projects %}
+      <article class="card" data-cat="{{ project.category }}">
+        <span class="cat">{{ project.category }}</span>
+        <h2><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h2>
+        <p class="meta">{{ project.location }}</p>
+        <p class="desc">{{ project.description }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </main>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const data = cards.map(c => ({
+      el: c,
+      title: c.querySelector('h2').innerText,
+      desc: c.querySelector('.desc').innerText,
+      cat: c.dataset.cat
+    }));
+
+    const fuse = new Fuse(data, { keys: ['title', 'desc'], threshold: 0.3 });
+
+    let activeCat = 'all';
+
+    function render(items) {
+      cards.forEach(c => c.style.display = 'none');
+      items.forEach(i => i.el.style.display = 'block');
+    }
+
+    function filter() {
+      const query = document.getElementById('search').value.trim();
+      let pool = query ? fuse.search(query).map(r => r.item) : data;
+      if (activeCat !== 'all') pool = pool.filter(i => i.cat === activeCat);
+      render(pool);
+    }
+
+    document.getElementById('search').addEventListener('input', filter);
+
+    document.querySelectorAll('.filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCat = btn.dataset.cat;
+        filter();
+      });
+    });
+  </script>
+
+</body>
+</html>
